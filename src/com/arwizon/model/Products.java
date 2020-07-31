@@ -1,6 +1,6 @@
 package com.arwizon.model;
 
-public class Products 
+public class Products implements Comparable<Products>
 {
 	private static int count=101;
 	private String name;
@@ -71,6 +71,19 @@ public class Products
 	}
 	public void setProductid(int productid) {
 		this.productid = productid;
+	}
+	@Override
+	public int compareTo(Products o) 
+	{if(this.getName().compareTo(((Products) o).getName())>0) {
+		return 1;
+	}
+	else if(this.getName().compareTo(((Products) o).getName())<0) {
+		return -2;
+	}
+	else
+	return 0;
+		
+		
 	}
 	
 }
