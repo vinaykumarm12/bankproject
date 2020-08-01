@@ -22,8 +22,9 @@ public class Newproduct implements ProductInterface {
 			String sq="select max(productid) from Products";
 			PreparedStatement st=con.prepareStatement(sq);
 			ResultSet rs=st.executeQuery();
-			int i=101;
+			int i=106;
 			while(rs.next()) {
+				i=rs.getInt(1);
 			String sql="insert into products values(?,?,?,?,?,?,?)";
 			PreparedStatement st1=con.prepareStatement(sql);
 			st1.setInt(1,i+1);
@@ -123,7 +124,7 @@ public class Newproduct implements ProductInterface {
 		String sql="select * from Products ";
 		try {					
 			PreparedStatement st=con.prepareStatement(sql);
-			ResultSet rs=st.executeQuery();
+			 ResultSet rs=st.executeQuery();
 			while(rs.next()) {
 				Products p=new Products();
 				p.setProductid(rs.getInt(1));
@@ -135,11 +136,10 @@ public class Newproduct implements ProductInterface {
 				p.setManufacturername(rs.getString(7));
 				Prolist.add(p);
 			}
-		
-		}catch(SQLException e) {
+			
+				}catch(SQLException e) {
 			e.printStackTrace();
-		}
-		
+		}	
 		return Prolist;
 }
 }
