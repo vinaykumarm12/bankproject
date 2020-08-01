@@ -3,6 +3,7 @@ package com.arwizon.main;
 import java.util.*;
 
 import com.arwizon.model.Products;
+import com.arwizon.service.ConnectionClass;
 import com.arwizon.service.Newproduct;
 import com.arwizon.service.ProductInterface;
 import com.arwizon.service.Validation;
@@ -94,53 +95,49 @@ public class MenuMain {
 				}
 
 				ProductInterface obj = new Newproduct();
-				Products p1 = obj.createpro(name, price1, numunits1, discount1, cat, m);
-				int f=p1.getProductid();
-				l.put(f, p1);
+				obj.createpro(name, price1, numunits1, discount1, cat, m);
+				
 				break;
 
 			case 2:
-				Set<Integer> s=l.keySet();
-				for (Integer p : s) {
-					System.out.println(l.get(p));
+				ProductInterface obj1 = new Newproduct();				
+				Set<Products> pr=new HashSet<Products>();
+				pr=obj1.display();
+				for (Products temp : pr) {
+			        System.out.println(temp);
 				}
 				break;
+				
 			case 3:
+				while(true) {
 				System.out.println(" enter product id to search");
 				int name1 = scan.nextInt();
-				ProductInterface prod = new Newproduct();
-				Map<Integer,Products>pr = prod.search(name1, l);
-				if (pr.isEmpty()) {
-					System.out.println("product not found");
-				} else {
-					System.out.println(pr);
-				}
+				ProductInterface obj3 = new Newproduct();
+				obj3.search(name1);				
 				break;
+				}
 			case 4:
+				while(true) {
 				System.out.println("enter the product id to delete");
 				int id=scan.nextInt();
 				ProductInterface prod2 = new Newproduct();
-				Map<Integer,Products>pr2=prod2.delete(id,l);
-				Set<Integer>s1=l.keySet();
-				for(Integer q:s1) {
-					System.out.println(l);
-				}
+				ProductInterface obj4 = new Newproduct();
+				obj4.delete(id);
 				System.out.println("product deleted succesfully");
 				break;
+				}
 			case 5:
+				while(true) {
 				System.out.println("enter the product id to update num of units");
 				int pid=scan.nextInt();
 				System.out.println("enter the number of items to be updated");
 				int unit=scan.nextInt();
-				ProductInterface prod3 = new Newproduct();
-				Map<Integer,Products>pr3=prod3.update(pid,unit,l);
-				Set<Integer>s2=l.keySet();
-				for(Integer q:s2) {
-					System.out.println(q);
-				
+				ProductInterface obj5 = new Newproduct();
+				obj5.update(pid, unit);
+				break;
+				}
 				}
 				
 		}
 	}
-}
 }
